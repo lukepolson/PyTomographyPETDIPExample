@@ -1,0 +1,5 @@
+/images
+/old_stuff
+*.vscode
+*.out
+*__pycache__*
