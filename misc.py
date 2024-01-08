@@ -52,9 +52,10 @@ def compute_CRC(img, pet_aligned, mask_greymatter, mask_whitematter):
 
 def compute_mse(img, pet_aligned, mask):
     ratio = pet_aligned.sum() / img.sum()
+    true_mean = pet_aligned[mask].mean()
     bias = (ratio*img - pet_aligned)[mask].mean()
     std = (ratio*img - pet_aligned)[mask].std()
-    return bias, std
+    return bias/true_mean, std/true_mean
 
 class StatisticsCallback(Callback):
     def __init__(
